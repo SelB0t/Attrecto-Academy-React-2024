@@ -5,9 +5,19 @@ import { Button } from "./components/button/Button";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [error, setError] = useState<string | null>(null); // State to manage error
 
   const updateCounter = (increase: boolean) => {
     setCount((currentValue) => {
+      if (!increase && currentValue <= 0) {
+        setError("The counter cannot be lower than 0."); // Set error if decreasing below 0
+        return currentValue;
+      }
+
+      if (increase) {
+        setError(null); // Clear error when increasing
+      }
+
       return increase ? currentValue + 1 : currentValue - 1;
     });
   };
@@ -31,6 +41,11 @@ function App() {
               Reset
             </Button>
           </div>
+          {error && (
+            <div className="alert alert-danger mt-3">
+              {error}
+            </div>
+          )}
         </div>
       </div>
     </div>
