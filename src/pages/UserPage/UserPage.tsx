@@ -8,6 +8,7 @@ import { Page } from "../../components/page/Page";
 import { UserFormValues, UserModel } from "../../models/user.model";
 import { BadgeModel } from "../../models/badges.model";
 import TextField from "../../components/text-field/TextField";
+import ProfileImage from "../../components/profile-image-preview/ProfileImage";
 
 const schema = Yup.object({
   name: Yup.string().required(),
@@ -52,7 +53,9 @@ export const UserPage = () => {
           error={errors.image?.message}
         />
       </form>
-      <img src={watch("image")}></img>
+
+      {getValues("image") && <ProfileImage register={register} watch={watch}></ProfileImage>}
+      
     </Page>
   );
 };
