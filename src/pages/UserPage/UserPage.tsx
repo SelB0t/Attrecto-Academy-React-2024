@@ -26,6 +26,7 @@ export const UserPage = () => {
     reset,
     setValue,
     getValues,
+    watch,
     formState: { errors },
   } = useForm<UserFormValues>({
     defaultValues: {
@@ -51,6 +52,7 @@ export const UserPage = () => {
           error={errors.image?.message}
         />
       </form>
+      <img src={watch("image")}></img>
     </Page>
   );
 };

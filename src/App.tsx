@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import HomePage from "./pages/HomePage/HomePage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import BadgesPage from "./pages/BadgesPage/BadgesPage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { UserPage } from "./pages/UserPage/UserPage";
 
 function App() {
