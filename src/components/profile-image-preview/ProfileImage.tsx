@@ -5,12 +5,10 @@ import classNames from "classnames";
 
 interface ProfileImageProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   watch: UseFormWatch<any>;
 }
 
-function ProfileImage({ register, watch }: ProfileImageProps) {
+function ProfileImage({ watch }: ProfileImageProps) {
   return (
     <>
       <h1 className="p-2 align-content-center">Profile Picture Preview: </h1>
