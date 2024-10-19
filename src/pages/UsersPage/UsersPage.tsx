@@ -17,11 +17,14 @@ import { badgesService } from "../../services/badges.service";
 const UsersPage = () => {
   const [users, setUsers] = useState<UserModel[]>([]);
   const [badges, setBadges] = useState<BadgeModel[]>([]);
+  const [userLoader, setUserLoader] = useState(false);
+  const [badgeLoader, setBadgeLoader] = useState(false);
 
   const navigate = useNavigate();
 
   const fetchUsers = useCallback(async () => {
     setUsers(await userService.getUsers());
+    setUserLoader(true)
   }, []);
 
   useEffect(() => {
@@ -31,6 +34,7 @@ const UsersPage = () => {
   useEffect(() => {
     const fetchBadges = async () => {
       setBadges(await badgesService.getBadges());
+      setBadgeLoader(true)
     };
     fetchBadges();
   }, []);
@@ -46,7 +50,7 @@ const UsersPage = () => {
   };
 
   return (
-    <Page title="Users">
+    <Page title="Users" loaded={badgeLoader && userLoader}>
       <div className="row">
         <div className="col-12 col-sm-6 col-md-4 col-lg-3">
           <Button color="primary" className="w-100 mb-3" onClick={goToUserPage}>
