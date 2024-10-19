@@ -7,6 +7,7 @@ import UsersPage from "./pages/UsersPage/UsersPage";
 import BadgesPage from "./pages/BadgesPage/BadgesPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { UserPage } from "./pages/UserPage/UserPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="login" element={<LoginPage />} />
         <Route path="home" element={<HomePage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="user" element={<UserPage />} />

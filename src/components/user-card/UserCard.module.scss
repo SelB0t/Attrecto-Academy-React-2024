@@ -1,0 +1,55 @@
+.UserCard {
+  text-decoration: none;
+  height: 100%;
+
+  &:hover {
+    cursor: pointer;
+    background: whitesmoke;
+    text-decoration: none;
+  }
+
+  .CardBody {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .UserName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 30px);
+    padding-right: 1rem;
+    margin: 0;
+  }
+
+  .DeleteIcon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    opacity: 0.5;
+    z-index: 100;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .Badges {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .BadgeImage {
+    transition: transform ease-in-out 0.25s;
+
+    &:hover {
+      transform: scale(1.85);
+    }
+  }
+}
