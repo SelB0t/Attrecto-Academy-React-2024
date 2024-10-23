@@ -9,6 +9,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import BadgeImage from "../badge-image/BadgeImage";
 
 import classes from "./UserCard.module.scss";
+import { hasPermission } from "../../util/hasPermission";
+import AccessController from "../access-controller/AccessController";
 
 interface UserCardProps {
   user: UserModel;
@@ -19,16 +21,20 @@ interface UserCardProps {
 const UserCard = ({ user, badges, handleDeleteUser }: UserCardProps) => {
   const { id, image, name, badges: userBadges } = user;
 
-  return (
-    <Link to={`/user/${id}`} className={classNames("card", classes.UserCard)}>
-      <img
-        src={image}
-        alt={`user #${id}`}
-        className={classNames(classes.UserImage, "card-img-top ")}
-      />
-      <div className={classNames("card-body", classes.CardBody)}>
-        <h5 className={classes.UserName}>{name}</h5>
-      </div>
+  const allowedUserChangeFor: Role[] = ["ADMIN"];
+
+  const showLink = hasPermission(allowedUserChangeFor);
+
+  const userCardContent = (<>
+    <img
+      src={image}
+      alt={`user #${id}`}
+      className={classNames(classes.UserImage, "card-img-top ")}
+    />
+    <div className={classNames("card-body", classes.CardBody)}>
+      <h5 className={classes.UserName}>{name}</h5>
+    </div>
+    <AccessController allowedFor={allowedUserChangeFor}>
       <Button
         className={classes.DeleteIcon}
         onClick={(e) => {
@@ -38,21 +44,31 @@ const UserCard = ({ user, badges, handleDeleteUser }: UserCardProps) => {
       >
         <FontAwesomeIcon icon={faTrash} />
       </Button>
-      <div className={classes.Badges}>
-        {userBadges.map((badge) => {
-          const found = badges.find((item) => item.id === badge.id);
+    </AccessController>
+    <div className={classes.Badges}>
+      {userBadges?.map((badge) => {
+        const found = badges.find((item) => item.id === badge.id);
 
-          return found ? (
-            <BadgeImage
-              small
-              url={found.image}
-              key={badge.id}
-              className={classes.BadgeImage}
-            />
-          ) : null;
-        })}
-      </div>
+        return found ? (
+          <BadgeImage
+            small
+            url={found.image}
+            key={badge.id}
+            className={classes.BadgeImage}
+          />
+        ) : null;
+      })}
+    </div>
+  </>)
+
+  return showLink ? (
+    <Link to={`/user/${id}`} className={classNames("card", classes.UserCard)}>
+      {userCardContent}
     </Link>
+  ) : (
+    <div className={classNames("card", classes.UserCard, classes.NotLink)}>
+      {userCardContent}
+    </div>
   );
 };
 

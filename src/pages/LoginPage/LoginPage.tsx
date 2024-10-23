@@ -5,16 +5,22 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TextField from "../../components/text-field/TextField";
 import { Button } from "../../components/button/Button";
+import { authService } from "../../services/auth.service";
 
 interface LoginPageProps {
   login: (token: string) => void;
 }
 
-const onSubmit = () => {
-  // login logic here
-};
+const LoginPage = ({ login }: LoginPageProps) => {
 
-const LoginPage = () => {
+  const onSubmit = async (values: CredentialsModel) => {
+    const { token } = await authService.login(values);
+
+    if (token) {
+      login(token);
+    }
+  };
+
   const initialValues: CredentialsModel = { email: "", password: "" };
 
   const schema = Yup.object().shape({

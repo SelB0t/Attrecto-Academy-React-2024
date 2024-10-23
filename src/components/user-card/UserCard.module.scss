@@ -2,10 +2,12 @@
   text-decoration: none;
   height: 100%;
 
-  &:hover {
-    cursor: pointer;
-    background: whitesmoke;
-    text-decoration: none;
+  &:not(.NotLink) {
+    &:hover {
+      cursor: pointer;
+      background: whitesmoke;
+      text-decoration: none;
+    }
   }
 
   .CardBody {
