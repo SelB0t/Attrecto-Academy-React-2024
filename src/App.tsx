@@ -10,6 +10,7 @@ import { UserPage } from "./pages/UserPage/UserPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { AUTH_TOKEN } from "./util/constants";
 import { getDataFromTokenModel } from "./util/token";
+import BadgePage from "./pages/BadgePage/BadgePage";
 
 function App() {
   const [role, setRole] = useState<Role | null>(getDataFromTokenModel("role") as Role);
@@ -29,6 +30,7 @@ function App() {
 
   const userRouteElement = role === "ADMIN" ? <UserPage /> : <Navigate to="/home" />;
 
+  const badgeRouteElement = role === "ADMIN" ? <BadgePage /> : <Navigate to="/home" />;
   return (
     <div className="App">
       <header className="App-header">
@@ -41,6 +43,8 @@ function App() {
           <Route path="users" element={<UsersPage />} />
           <Route path="user" element={userRouteElement} />
           <Route path="user/:id" element={userRouteElement} />
+          <Route path="badge" element={badgeRouteElement} />
+          <Route path="badge/:id" element={badgeRouteElement} />
           <Route path="badges" element={<BadgesPage />} />
 
           <Route path="/login" element={<Navigate to="/home" />} />

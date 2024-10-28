@@ -121,7 +121,7 @@ export const UserPage = () => {
         </div>
       </form>
 
-      {getValues("image") && <ProfileImage register={register} watch={watch}></ProfileImage>}
+      {watch("image") && <ProfileImage register={register} watch={watch}></ProfileImage>}
       
     </Page>
   );
