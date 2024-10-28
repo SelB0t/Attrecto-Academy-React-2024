@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import classNames from "classnames";
 
 import { Page } from "../../components/page/Page";
 import { BadgeModel } from "../../models/badges.model";
 import { badgesService } from "../../services/badges.service";
 
-import classes from "./Badges.module.scss";
 import { useNavigate } from "react-router-dom";
 import AccessController from "../../components/access-controller/AccessController";
 import { Button } from "../../components/button/Button";

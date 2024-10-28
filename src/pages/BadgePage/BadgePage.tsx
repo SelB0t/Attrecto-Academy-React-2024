@@ -26,8 +26,6 @@ const BadgePage = () => {
     control,
     handleSubmit,
     reset,
-    setValue,
-    getValues,
     watch,
     formState: { errors },
   } = useForm<BadgeFormValues>({
