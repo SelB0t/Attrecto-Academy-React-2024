@@ -3,5 +3,7 @@ export interface BadgeModel {
     name: string;
     image: string;
     description: string;  
-    createAt: Date;
+    createdAt: Date;
 }
+
+export type BadgeFormValues = Omit<BadgeModel, "id" | "createdAt">;
